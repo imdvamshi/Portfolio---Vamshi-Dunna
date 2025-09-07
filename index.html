@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vamshi Dunna — Portfolio</title>
+  <meta name="description" content="Vamshi Dunna — Student portfolio: about, resume, projects, skills, education, location." />
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Instrument+Sans:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-gradient-start:#BFCDFF;
+      --bg-gradient-end:#D9E1FF;
+      --accent:#d33;
+      --text:#0b0b0b;
+      --muted:#444;
+      --max-width:1100px;
+      --dot-size:31px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      color:var(--text);
+      line-height:1.45;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      min-height:100vh;
+      position:relative;
+      overflow-x:hidden;
+    }
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      background-image:
+        url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Ccircle cx='256' cy='256' r='20' fill='rgba(0,0,0,0.45)'/%3E%3Ccircle cx='768' cy='768' r='20' fill='rgba(0,0,0,0.45)'/%3E%3C/svg%3E"),
+        radial-gradient(circle at 35% 30%, var(--bg-gradient-start), var(--bg-gradient-end) 60%);
+      background-size: var(--dot-size) var(--dot-size), cover;
+      background-repeat: repeat, no-repeat;
+      pointer-events:none;
+      opacity:1;
+    }
+    .site{max-width:var(--max-width);margin:0 auto;padding:48px 24px;}
+    header.nav{
+      display:flex;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:48px;
+    }
+    .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--text);}
+    .brand .logo{
+      width:44px;height:44px;border-radius:8px;
+      background:linear-gradient(135deg,#fff 0%, #eee 100%);
+      display:inline-flex;align-items:center;justify-content:center;
+      font-weight:800;color:var(--accent);box-shadow:0 6px 18px rgba(0,0,0,0.08);
+      font-family:'Instrument Sans',sans-serif;
+    }
+    nav ul{display:flex;gap:12px;list-style:none;align-items:center;}
+    nav a{text-decoration:none;color:var(--muted);font-weight:600;padding:8px 12px;border-radius:8px;}
+    nav a:hover{color:var(--text);background:rgba(0,0,0,0.025)}
+    .hero{
+      display:grid;
+      grid-template-columns:1fr auto; /* lets the photo column size naturally */
+      gap:28px;
+      align-items:center;
+      margin-bottom:56px;
+    }
+    .hero .intro h1{
+      font-size:clamp(28px,4vw,48px);
+      line-height:1.02;
+      margin-bottom:12px;
+      font-family:'Instrument Sans',sans-serif;
+    }
+    .hero .intro p.lead{color:var(--muted);margin-bottom:16px;font-size:1.05rem;}
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      display:inline-block;padding:10px 16px;border-radius:10px;font-weight:700;text-decoration:none;
+    }
+    .btn.primary{background:var(--accent);color:#fff;box-shadow:0 6px 18px rgba(211,51,51,0.12)}
+    .btn.ghost{background:#fff;border:1px solid rgba(0,0,0,0.06);color:var(--text)}
+    /* hero image area */
+    .card{
+      background:none;
+      padding:0;
+      border-radius:0;
+      box-shadow:none;
+      text-align:center;
+    }
+    .avatar{
+      border-radius:16px;     /* optional: Instagram-like corners */
+      overflow:hidden;
+      max-width: 400px;       /* limit maximum width of the photo */
+      margin: 0 auto;         /* center horizontally in column */
+    }
+    .avatar img{
+      display:block;
+      width:100%;             /* scale image to fit max-width */
+      height:auto;            /* keep aspect ratio */
+      object-fit:cover;
+    }
+    section{margin-bottom:48px}
+    section h2{font-size:1.35rem;margin-bottom:12px;font-weight:800}
+    .projects-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;
+    }
+    .project{
+      background:#fff;border-radius:10px;padding:14px;box-shadow:0 6px 18px rgba(0,0,0,0.04);
+      min-height:120px;display:flex;flex-direction:column;justify-content:space-between;
+    }
+    .project h3{margin-bottom:8px;font-size:1.02rem}
+    .project p{color:var(--muted);font-size:.95rem}
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{background:#fff;padding:8px 10px;border-radius:999px;font-weight:700;box-shadow:0 4px 10px rgba(0,0,0,0.04)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .contact-card{background:#fff;padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+    footer{color:var(--muted);font-size:.95rem;padding:36px 0 18px;text-align:center}
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      .two-col{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+    .hover-red:hover {
+      color: #d33 !important;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="site" id="top">
+    <header class="nav">
+      <a class="brand" href="#top" aria-label="Vamshi Dunna home">
+        <span class="logo">VD</span>
+        <div>
+          <div style="font-weight:800">
+            <span>Vamshi Dunna</span>
+          </div>
+          <small style="color:var(--muted);font-weight:600">Student • AI&ML</small>
+        </div>
+      </a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#about">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#education">Resume</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h1>Hey — I'm <strong class="hover-red">Vamshi Dunna</strong></h1>
+          <p class="lead">B.Tech Student | AI&ML Enthusiast | Exploring Innovative Projects</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#projects">View Projects</a>
+            <a class="btn ghost" href="https://drive.google.com/file/d/1w1rF6w4TC-pXWpPpKB568bzj1oC5kSaP/view?usp=sharing" id="resume" target="_blank" rel="noopener">Download Resume</a>
+          </div>
+          <p style="margin-top:14px;color:var(--muted)">Based in: <strong>Hyderabad, India</strong> — open to internships & collabs.</p>
+        </div>
+        <aside class="card">
+          <div class="avatar">
+            <img src="images/vmh.jpg" alt="Vamshi Dunna — portrait">
+          </div>
+        </aside>
+      </section>
+      <section id="about">
+        <h2>About</h2>
+        <p style="color:var(--muted); text-align: justify;">I’m Vamshi Dunna, an aspiring Software and Machine Learning Engineer with a strong foundation in Java, Python, SQL, and Data Structures & Algorithms. I enjoy solving challenging problems and building real-world solutions that merge intelligent systems with efficient software design.</p>
+      </section>
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          <article class="project">
+            <div>
+              <h3>Use of Artificial Neural Network to detect Fake Profiles</h3>
+              <p style="text-align: justify;">Led a team in developing an Artificial Neural Network (ANN) model to detect fake profiles by analyzing behavioral and profile data patterns, improving fraud detection accuracy through advanced machine learning techniques as part of a mini-project at CMR Engineering College.</p>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+              <a class="btn ghost" href="https://youtu.be/j6aR2XPhvBU" target="_blank" rel="noopener">Preview</a>
+              <a class="btn ghost" href="https://github.com/imdvamshi/Use-of-ANN-to-detect-Fake-Profiles.git" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+          <article class="project">
+            <div>
+              <h3>Smart Smart Attendance System Using Face Recognition</h3>
+              <p style="text-align: justify;">Developed an AI-powered attendance tracking system leveraging advanced computer vision and deep learning techniques to detect and recognize faces in real-time, automating presence marking, minimizing manual errors and ensuring fast, contactless attendance management.</p>
+             </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+              <a class="btn ghost" href="https://youtu.be/dHGUOkI9bNY" target="_blank" rel="noopener">Preview</a>
+              <a class="btn ghost" href="https://github.com/imdvamshi/Smart-Attendance-System-Using-Face-Recognition.git" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+          <article class="project">
+            <div>
+              <h3>Automatic Irrigation and Plant Watering System</h3>
+              <p style="text-align: justify;">Developed an Arduino-based automatic irrigation system that monitors soil moisture levels in real-time and waters plants autonomously. Leveraging sensors and microcontrollers, this system optimizes water usage, ensures healthy plant growth, and reduces manual intervention. </p>
+             </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+              <a class="btn ghost" href="https://drive.google.com/file/d/1EoXSN1EF4anIkmUczd7q2vOsKk4CwGDO/view?usp=sharing" target="_blank" rel="noopener">Preview</a>
+              <a class="btn ghost" href="https://github.com/imdvamshi/Automatic-Irrigation-and-Plant-Watering-System.git" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </article>
+        </div>
+      </section>
+       <section id="Industry Simulations">
+        <h2>Industry Simulations</h2>
+        <div class="projects-grid">
+          <article class="project">
+            <div>
+              <h3>Tata - GenAI Powered Data Analytics Job Simulation</h3>
+              <p style="text-align:justify;">Worked on AI-powered data analytics and predictive modeling using GenAI, conducting EDA, building a no-code risk assessment framework, designing an ethical automated collections strategy, and documenting every step.</p>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+              <a class="btn ghost" href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_RGY9pKLi6i5J4yCzW_1756036381934_completion_certificate.pdf" target="_blank" rel="noopener">Certificate</a>
+            </div>
+          </article>
+          <article class="project">
+            <div>
+              <h3>Deloitte Australia - Technology  Job Simulation</h3>
+              <p style="text-align:justify;">Worked on - Technology Consulting Virtual Project - Deloitte. Completed a job simulation involving development and coding, wrote a proposal for creating a client dashboard, and documented each step of the process.</p>
+            </div>
+            <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px;">
+              <a class="btn ghost" href="https://forage-uploads-prod.s3.amazonaws.com/completion-certificates/9PBTqmSxAf6zZTseP/udmxiyHeqYQLkTPvf_9PBTqmSxAf6zZTseP_RGY9pKLi6i5J4yCzW_1751523029486_completion_certificate.pdf" target="_blank" rel="noopener">Certificate</a>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills">
+          <span class="chip">Java</span>
+          <span class="chip">Python</span>
+          <span class="chip">DSA</span>
+          <span class="chip">MySQL</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">FrontEnd</span>
+        </div>
+      </section>
+      <section class="two-col" id="education">
+        <div>
+          <h2>Education</h2>
+          <strong>Btech / CMR Engineering College</strong><br>
+          <small style="color:var(--muted)">2022-2026 • CGPA: <span class="hover-red">9.12</span></small>
+          <p style="margin-top:0px;color:var(--muted)">Artificial Intelligence & Machine Learning</p>
+        </div>
+        <div>
+          <h2 id="resume-heading">Resume</h2>
+          <div class="contact-card">
+            <p style="color:var(--muted)">Online / Offline</p>
+            <p style="margin-top:12px"><a class="btn primary" href="https://drive.google.com/file/d/1w1rF6w4TC-pXWpPpKB568bzj1oC5kSaP/view?usp=sharing" download target="_blank" rel="noopener">Download Resume</a></p>
+          </div>
+        </div>
+      </section>
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-card">
+          <p style="color:var(--muted)">Email: <a href="mailto:you@example.com"><span style="color: #2a5bd7;">228r1a6675@gmail.com</span></a></p>
+          <p style="color:var(--muted); margin-top:5px;">
+            Location:
+            <span id="location-pop" style="cursor:pointer; color:#2a5bd7; text-decoration:underline;">Hyderabad, India</span>
+          </p>
+          <div id="img-pop" style="display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;border-radius:18px;box-shadow:0 12px 36px rgba(0,0,0,0.22);overflow:hidden;background:#fff;">
+            <img src="images/charminar-6925617_1280.jpg" alt="Hyderabad" style="max-width:420px;max-height:320px;display:block;">
+          </div>
+          <div id="preview-img-pop" style="display:none;position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);z-index:9999;border-radius:18px;box-shadow:0 12px 36px rgba(0,0,0,0.22);overflow:hidden;background:#fff;">
+            <img src="images/preview1.jpg" alt="Preview Image" style="max-width:420px;max-height:320px;display:block;">
+          </div>
+          <script>
+            // Show image popup at center for Hyderabad
+            const loc = document.getElementById('location-pop');
+            const pop = document.getElementById('img-pop');
+            loc.addEventListener('mouseenter', () => {
+              pop.style.display = 'block';
+            });
+            loc.addEventListener('mouseleave', () => {
+              pop.style.display = 'none';
+            });
+          </script>
+          <p style="margin-top:5px;color:var(--muted)">Social: <a href="https://github.com/imdvamshi" target="_blank" rel="noopener"><span style="color: #2a5bd7;">GitHub</span></a> • <a href="https://www.linkedin.com/in/d-vamshi-7a56a8275/" target="_blank" rel="noopener"><span style="color: #2a5bd7;">LinkedIn</span></a></p>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <small>© <span id="year"></span> Vamshi Dunna — +91 8074196028.</small>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click',e=>{
+        const el=document.querySelector(a.getAttribute('href'));
+        if(el){e.preventDefault();el.scrollIntoView({behavior:'smooth'});}
+      });
+    });
+
+    // Preview image popup on hover
+    const previewBtn = document.querySelector('.project .btn.ghost[onclick]');
+    const previewPop = document.getElementById('preview-img-pop');
+    if(previewBtn && previewPop){
+      previewBtn.addEventListener('mouseenter',()=>{previewPop.style.display='block';});
+      previewBtn.addEventListener('mouseleave',()=>{previewPop.style.display='none';});
+    }
+  </script>
+</body>
+</html>
